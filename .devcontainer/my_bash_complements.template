@@ -1,0 +1,12 @@
+#
+# ~/my_bash_complements.template
+#
+# Contém comandos e configurações complementares ao arquivo bashrc do container.
+# Para utilizar este arquivo, faça uma cópia renomeando-a para "my_bash_complements"
+# editando o que você quiser. O conteúdo abaixo é apenas uma sugestão
+
+test alias clima >/dev/null 2>&1 || alias clima='curl v2.wttr.in'
+
+command -v git > dev/null 2>&1 && git config --global user.name "Bob"
+command -v git > dev/null 2>&1 && git config --global user.email "bob@mail.com"
+command -v git > dev/null 2>&1 && git config --global pull.rebase false

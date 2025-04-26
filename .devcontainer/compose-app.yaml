@@ -1,0 +1,25 @@
+version: "3.8"
+services: 
+  app:
+    env_file: 
+      - .env
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+      target: team
+    tty: true
+    volumes:
+      - ../:/workspace:cached
+      - home:/home/vscode:cached
+    command: sleep infinity
+    #ports:
+    #- 8080:8080
+    networks:
+      - my-own-net
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+volumes:
+  home:
+networks:
+  my-own-net

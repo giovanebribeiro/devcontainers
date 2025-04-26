@@ -1,22 +1,45 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
-	"name": "Alpine",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.20"
+	"name": "Base",
+    "workspaceFolder": "/workspace",
+    "dockerComposeFile": [
+        "./compose-app.yaml"
+    ],
+    "service": "app",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
+
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.devcontainer/bashrc,target=/home/vscode/.bashrc,type=bind"
+    ],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "bash -c /workspace/.devcontainer/post_create",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+        "vscode": {
+            "extensions": [
+                "Codium.codium",
+                "editorconfig.editorconfig",
+                "github.vscode-github-actions"
+            ]
+        }
+    },
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+
+    // Use 'initializeCommand' to run commands before the container creation
+    // "initializeCommand": "uname -a",
+
+    // List of env variables to be loaded when container starts. More info: https://containers.dev/implementors/spec/
+    "remoteEnv": {
+        "TMPDIR": "/tmp"
+    }
 }

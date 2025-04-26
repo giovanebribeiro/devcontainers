@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# post_create
+#
+# Script complementar que deve ser executado após a criação do container
+#
+
+echo ">>>> devcontainer UP <<<<"
+uname -a
+echo ">>>> devcontainer UP <<<<"
